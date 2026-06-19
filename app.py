@@ -31,8 +31,11 @@ st.markdown("""
 
 @st.cache_data
 def load_data():
-    # Load the exported EDA dataset
-    df = pd.read_csv("Sales_data(EDA Exported).csv")
+    import os
+    # Load the exported EDA dataset using an absolute path
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, "Sales_data(EDA Exported).csv")
+    df = pd.read_csv(file_path)
     df['order_date'] = pd.to_datetime(df['order_date'])
     return df
 
